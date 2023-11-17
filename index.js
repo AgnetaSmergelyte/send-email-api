@@ -1,12 +1,12 @@
 const express = require('express');
-const app = express();
+const index = express();
 require("dotenv").config();
 const port = process.env.PORT;
 const cors = require('cors');
-app.use(cors({
+index.use(cors({
     origin: 'https://www.agnetasmergelyte.lt'
 }));
-app.use(express.json());
+index.use(express.json());
 const nodemailer = require('nodemailer');
 const transporter = nodemailer.createTransport({
     service: 'gmail',
@@ -16,7 +16,7 @@ const transporter = nodemailer.createTransport({
     }
 });
 
-app.post("/send", (req, res) => {
+index.post("/send", (req, res) => {
     const {email, message} = req.body;
     const emailRegex = /^([a-zA-Z0-9!#$%&'*+\/=?^_`{|}~-]+(?:\.[a-zA-Z0-9!#$%&'*+\/=?^_`{|}~-]+)*@(?:[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?\.)+[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?)$/
     if (!email.match(emailRegex)) {
@@ -40,4 +40,4 @@ app.post("/send", (req, res) => {
     });
 });
 
-app.listen(port);
+index.listen(port);

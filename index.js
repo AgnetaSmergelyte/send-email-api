@@ -4,7 +4,7 @@ require("dotenv").config();
 const port = process.env.PORT;
 const cors = require('cors');
 index.use(cors({
-    origin: 'https://www.agnetasmergelyte.lt'
+    origin: process.env.ORIGIN
 }));
 index.use(express.json());
 const nodemailer = require('nodemailer');
